@@ -4,11 +4,11 @@ const UserSchema = new mongoose.Schema({
   userId: Number,
   name: String,
   date: Date,
-  group: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Group',
-    required: true
-  }
+  // group: {
+  //   type: mongoose.Schema.Types.ObjectId,
+  //   ref: 'Group',
+  //   required: true
+  // }
 })
 
 export default mongoose.model('User', UserSchema)

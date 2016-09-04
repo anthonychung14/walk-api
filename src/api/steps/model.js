@@ -1,5 +1,4 @@
 import mongoose from 'mongoose';
-mongoose.Promise = require('bluebird')
 
 const StepSchema = new mongoose.Schema({  
   // userId: Number,

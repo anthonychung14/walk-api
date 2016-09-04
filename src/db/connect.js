@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+mongoose.Promise = require('bluebird')
 import { dbHost } from '../config/config.json';
 
 export default () => {

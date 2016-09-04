@@ -16,7 +16,10 @@ const GroupSchema = new mongoose.Schema({
   },
 
   dateFormed: Date,
-  members: []
+  members: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User'
+  }]
 })
 
 export default mongoose.model('Group', GroupSchema)

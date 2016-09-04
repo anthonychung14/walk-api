@@ -12,20 +12,17 @@ export function checkUpdate(req,res,next) {
   next()
 }
 
-export function postSteps(req, res, next) {
-  console.log("post is working too")  
-  
+export function postSteps(req, res, next) {  
   Step
     .create({
       todaySteps: 1000
     })    
-    .then((err, steps) => {      
+    .then((steps, err) => {      
       console.log(steps, "created")
-      res.sendStatus(200)
+      res.json(steps)
     })
     .catch(err => {
       console.log("error", err)
     })    
 }
 
-//write to the database

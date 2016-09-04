@@ -8,7 +8,17 @@ export function getUser(req, res, next){
 }
 
 export function createUser(req, res, next){
-  console.log("post is working too")
+  console.log("userPost is working too")
   // res.json({a: "hello"})
-  res.sendStatus(200)
+  User
+    .create({
+      name: "Anthony Chung"
+    })    
+    .then((user, err) => {            
+      res.json(user)
+    })
+    .catch(err => {
+      console.log("error", err)
+      res.sendStatus(400)
+    })    
 }
