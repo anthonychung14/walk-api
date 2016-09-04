@@ -27,7 +27,7 @@ app.use(bodyParser.json({
 	limit : config.bodyLimit
 }));
 
-//////////////
+/// DATA ROUTES ///
 
 app.use('/api', api)  
 
@@ -38,10 +38,6 @@ app.use(function(err, req, res, next) {
   }
 });
 
-///////////////
-
 app.server.listen(process.env.PORT || config.port);
-
 console.log(`Started on port ${app.server.address().port}`);
-
 export default app;

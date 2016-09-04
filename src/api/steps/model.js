@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+mongoose.Promise = require('bluebird')
 
 const StepSchema = new mongoose.Schema({  
   // userId: Number,
@@ -6,7 +7,7 @@ const StepSchema = new mongoose.Schema({
   // date: Date,
   todaySteps: Number
 }, {
-  collection: 'stepsChain'
+  collections: 'Steps'
 })
 
 export default mongoose.model('Step', StepSchema)

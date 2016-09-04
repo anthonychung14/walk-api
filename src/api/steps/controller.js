@@ -13,14 +13,19 @@ export function checkUpdate(req,res,next) {
 }
 
 export function postSteps(req, res, next) {
-  console.log("post is working too")
+  console.log("post is working too")  
+  
   Step
     .create({
       todaySteps: 1000
-    })
+    })    
     .then((err, steps) => {      
+      console.log(steps, "created")
       res.sendStatus(200)
     })
+    .catch(err => {
+      console.log("error", err)
+    })    
 }
 
 //write to the database

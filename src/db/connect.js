@@ -1,6 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import mongoose from 'mongoose';
+mongoose.Promise = require('babybird')
 import { db } from './constants';
 
 export default () => {
