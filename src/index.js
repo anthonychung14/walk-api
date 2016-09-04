@@ -8,8 +8,6 @@ import config from './config/config.json';
 import morgan from 'morgan'
 
 import api from './api'
-import groupsRouter from './api/groups'
-import usersRouter from './api/users'
 
 let app = express();
 app.server = http.createServer(app);
