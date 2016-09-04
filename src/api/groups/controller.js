@@ -1,8 +1,31 @@
 import Group from './model'
 import _ from 'lodash'
 
-export function params(req, res, next, code) {  
-  console.log(req.params.code, "this is her id")
+export function params(req, res, next, code) {      
+  Group
+    .findOne({
+      groupId: code
+    })
+    .populate('code')
+    .exec()
+    .then((group, err) => {
+      if (!group) {
+        next(new Error("Code does not exist"))
+      }
+      req.group = group
+      console.log(group, "group")
+      next()
+    })    
+}
+
+export function getOne(req, res, next) {
+  console.log(req.params)
+  const group = req.group
+  res.json(group)
+}
+
+export function findGroup(req, res, next) {
+  const { code } = req.query.code
   Group
     .findOne({
       "code": code
@@ -19,14 +42,24 @@ export function params(req, res, next, code) {
     })    
 }
 
-export function getOne(req, res, next) {
-  console.log(req.params)
-  console.log(group, "group here")
-  const group = req.group
-  res.json(group)
+export function createGroup(req, res, next) {    
+  const { groupId } = req.body    
+  Group
+    .findOneAndUpdate({
+      "groupId": groupId,
+      "members": []
+    }, {
+      "upsert": true,
+      "new": true
+    })    
+    .then((group, err) => {                        
+      res.json(group);
+    })
+    .catch(err => {
+      console.log("error", err)
+      res.sendStatus(400);
+    })    
 }
-
-
 //on successful get with params
 export function joinGroup(req, res, next) {  
   let { code } = req.body
@@ -44,22 +77,5 @@ export function joinGroup(req, res, next) {
 }
 
 //on successful post with substr code
-export function createGroup(req, res, next) {    
-  const { code } = req.body    
-  Group
-    .findOneAndUpdate({
-      "code": code,
-      "members": []
-    }, {
-      "upsert": true,
-      "new": true
-    })    
-    .then((group, err) => {                        
-      res.json(group);
-    })
-    .catch(err => {
-      console.log("error", err)
-      res.sendStatus(400);
-    })    
-}
+
 

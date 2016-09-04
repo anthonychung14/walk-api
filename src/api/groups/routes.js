@@ -4,16 +4,17 @@ import * as controller from './controller'
 let router = new Router()
 
 router.param('code', controller.params)
-
 router.route('/')    
-      .get(controller.getOne)
+      .get(
+        controller.findGroup)
       .post(
-        controller.createGroup
-      , controller.joinGroup)
+        controller.createGroup)
 
 router.route('/:code')
-      .get(controller.getOne)
+      .get(
+        controller.getOne)
       // .put(checkUser, controller.put)
       // .delete(checkUser, controller.delete)
+      
 
 export default router;
