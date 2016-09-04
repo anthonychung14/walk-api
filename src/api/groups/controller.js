@@ -18,6 +18,10 @@ export function params(req, res, next, code) {
     })    
 }
 
+export function echo(req, res, next){
+  res.json("Hello there")
+}
+
 export function getOne(req, res, next) {
   console.log(req.params)
   const group = req.group
@@ -25,7 +29,9 @@ export function getOne(req, res, next) {
 }
 
 export function findGroup(req, res, next) {
+  console.log("i should not be firing")
   const { code } = req.query.code
+
   Group
     .findOne({
       "code": code
@@ -36,11 +42,11 @@ export function findGroup(req, res, next) {
       if (!group) {
         next(new Error("Code does not exist"))
       }
-      console.log(group, "group found")
       req.group = group
       next()
     })    
 }
+
 
 export function createGroup(req, res, next) {    
   const { groupId } = req.body    

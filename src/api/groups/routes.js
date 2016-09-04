@@ -6,15 +6,18 @@ let router = new Router()
 router.param('code', controller.params)
 router.route('/')    
       .get(
-        controller.findGroup)
+        controller.echo)
       .post(
         controller.createGroup)
 
 router.route('/:code')
       .get(
         controller.getOne)
-      // .put(checkUser, controller.put)
-      // .delete(checkUser, controller.delete)
+      // .put(
+        //checkUser
+      //, controller.put)
+      // .delete(
+        //checkUser
+      //, controller.delete)
       
-
 export default router;
