@@ -3,7 +3,6 @@ import express from 'express';
 import cors from 'cors';
 import bodyParser from 'body-parser';
 
-import initializeDb from './db';
 import middleware from './middleware';
 import config from './config/config.json';
 import morgan from 'morgan'
@@ -11,6 +10,8 @@ import morgan from 'morgan'
 import stepsRouter from './api/steps'
 import groupsRouter from './api/groups'
 import usersRouter from './api/users'
+
+import initializeDb from './db';
 
 let app = express();
 app.server = http.createServer(app);
