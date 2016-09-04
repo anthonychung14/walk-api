@@ -8,7 +8,7 @@ export function getSteps(req, res, next){
 }
 
 export function postSteps(req, res, next){
-  console.log("are you even firing")
+  console.log("post is working too")
   // res.json({a: "hello"})
   res.sendStatus(200)
 }

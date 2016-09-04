@@ -4,5 +4,6 @@ import * as controller from './controller'
 let router = new Router()
 router.route('/')
     .get(controller.getSteps)
+    .post(controller.postSteps)
 
 export default router;

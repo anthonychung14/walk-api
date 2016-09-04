@@ -29,16 +29,7 @@ app.use(bodyParser.json({
 	limit : config.bodyLimit
 }));
 
-// connect to db
-console.log("DB INITIALIZATION")  
-
-//TODO: CRUD UTIL
 app.use('/api', api)  
-// app.use('/groups', groupsRouter)  
-// app.use('/users', usersRouter)  
-
-  // app.use(middleware({ config, db }));
-
 
 app.use(function(err, req, res, next) {
   if (err) {
