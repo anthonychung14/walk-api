@@ -6,7 +6,7 @@ const UserSchema = new mongoose.Schema({
   date: Date,
   group: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'group',
+    ref: 'Group',
     required: true
   }
 })

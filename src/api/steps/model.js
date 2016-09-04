@@ -1,10 +1,10 @@
 import mongoose from 'mongoose';
 
 const StepSchema = new mongoose.Schema({  
-  userId: Number,
-  chain: Number,
-  todaySteps: Number,
-  date: Date
+  // userId: Number,
+  // chain: Number,
+  // date: Date,
+  todaySteps: Number
 }, {
   collection: 'stepsChain'
 })
