@@ -27,6 +27,8 @@ app.use(bodyParser.json({
 	limit : config.bodyLimit
 }));
 
+//////////////
+
 app.use('/api', api)  
 
 app.use(function(err, req, res, next) {
@@ -35,6 +37,8 @@ app.use(function(err, req, res, next) {
     res.status(500).send(err);
   }
 });
+
+///////////////
 
 app.server.listen(process.env.PORT || config.port);
 

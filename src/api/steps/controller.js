@@ -12,3 +12,10 @@ export function postSteps(req, res, next){
   // res.json({a: "hello"})
   res.sendStatus(200)
 }
+
+export function checkUpdate(req,res,next){
+
+  console.log("checking for updates")
+
+  next()
+}
