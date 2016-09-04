@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "nodemon -w src --exec \"babel-node src --presets es2015,stage-0\"",
     "build": "babel src -s -D -d dist --presets es2015,stage-0",
-    "start": "npm build && node dist",
+    "start": "node dist",
     "prestart": "npm run -s build",
     "test": "eslint src"
   },
@@ -26,7 +26,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/wokitout/walktogether-api"
+    "url": "git+https://github.com/wokitout/walk-api"
   },
   "author": "Anthony Chung <anthonychung14>",
   "license": "MIT",
