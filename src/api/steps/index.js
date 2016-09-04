@@ -1,6 +1,5 @@
 import _ from 'lodash'
 import { Router } from 'express';
-// import api from '../api'
 
 export default ({ db }) => {
   let steps = Router();  
@@ -10,12 +9,9 @@ export default ({ db }) => {
     res.send("SENDING STEPS")
   })
 
-
-
   steps.post('/', (req, res) => {
     res.send("POSTING STEPS")
   })
 
   return steps;
-  
 }
