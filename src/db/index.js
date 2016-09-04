@@ -18,7 +18,6 @@ import mongoose from 'mongoose';
 import { mongo } from './constants';
 
 export default () => {
-  // Find the appropriate database to connect to, default to localhost if not found.
   const connect = () => {
     mongoose.connect(mongo, (err) => {
       if (err) {
@@ -40,7 +39,7 @@ export default () => {
     if (~file.indexOf('.js')) require(`${modelPath}/${file}`);
   });
 
-  connect
+  return db  
 };
 
 

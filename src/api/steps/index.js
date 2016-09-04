@@ -1,11 +1,10 @@
 import _ from 'lodash'
 import { Router } from 'express';
 
-export default ({ db }) => {
+export default () => {
   let steps = Router();  
 
-  steps.get('/', (req, res) => {
-    console.log(db)
+  steps.get('/', (req, res) => {    
     res.send("SENDING STEPS")
   })
 

@@ -1,12 +1,17 @@
-import { Router } from 'express';
 import _ from 'lodash'
+import { Router } from 'express';
 
-export default ({ config, db }) => {    
-  let api = Router();  
+export default ({ db }) => {
+  let steps = Router();  
 
-  api.get('/', (req, res) => {    
-    res.send("now we're cooking")
+  steps.get('/', (req, res) => {
+    console.log(db)
+    res.send("SENDING STEPS")
   })
-  
-  return api;  
+
+  steps.post('/', (req, res) => {
+    res.send("POSTING STEPS")
+  })
+
+  return steps;
 }
