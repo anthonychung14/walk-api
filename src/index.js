@@ -7,6 +7,7 @@ import middleware from './middleware';
 import config from './config/config.json';
 import morgan from 'morgan'
 
+import db from './db'
 import api from './api'
 
 let app = express();
@@ -26,6 +27,9 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json({
 	limit : config.bodyLimit
 }));
+
+/// DB CONNECT ///
+db.connect()
 
 /// DATA ROUTES ///
 

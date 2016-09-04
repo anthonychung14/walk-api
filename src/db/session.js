@@ -1,13 +1,14 @@
 import session from 'express-session';
 import connectMongo from 'connect-mongo';
-import { db } from './constants';
+import config from '../config/config.json';
+
 
 const MongoStore = connectMongo(session);
 
 export default () =>
   new MongoStore(
     {
-      url: db,
+      url: config.dbHost,
       autoReconnect: true
     }
   );
