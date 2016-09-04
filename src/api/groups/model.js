@@ -1,10 +1,9 @@
 import mongoose from 'mongoose';
 
-const GroupSchema = new mongoose.Schema({    
-  name: {
+const GroupSchema = new mongoose.Schema({      
+  code: {
     type: String,
-    required: true,
-    unique: true
+    required: true,    
   },
   chain: {
     type: Number,
