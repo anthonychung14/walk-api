@@ -1,19 +1,14 @@
-import Steps from './model'
+import Step from './model'
 import _ from 'lodash'
 
-export default () => {
+export function getSteps(req, res, next){
+  console.log("are you even firing")
+  // res.json({a: "hello"})
+  res.sendStatus(200)
+}
 
-  let stepController = {}
-
-  stepController.get = function(req, res, next){
-    
-    res.json("hello")
-
-  }
-
-  stepController.post = (req, res, next) => {
-    res.send(200)
-  }
-
-  return stepsController
+export function postSteps(req, res, next){
+  console.log("are you even firing")
+  // res.json({a: "hello"})
+  res.sendStatus(200)
 }

@@ -7,7 +7,7 @@ import middleware from './middleware';
 import config from './config/config.json';
 import morgan from 'morgan'
 
-import stepRoutes from './api/steps/routes'
+import api from './api'
 import groupsRouter from './api/groups'
 import usersRouter from './api/users'
 
@@ -33,7 +33,7 @@ app.use(bodyParser.json({
 console.log("DB INITIALIZATION")  
 
 //TODO: CRUD UTIL
-app.use('/api/steps', stepRoutes)  
+app.use('/api', api)  
 // app.use('/groups', groupsRouter)  
 // app.use('/users', usersRouter)  
 
