@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 mongoose.Promise = require('bluebird')
-import { dbHost } from '../config/config.json';
+import { dbHost, dbHostDev } from '../config/config.json';
 
 export default () => {
   // Find the appropriate database to connect to, default to localhost if not found.
