@@ -1,9 +1,5 @@
 function defaultExport() {}
 
-defaultExport.DB_TYPES = {
-  MONGO: 'MONGO',
-  POSTGRES: 'POSTGRES',
-  NONE: 'NONE'
-};
+defaultExport.mongo = "mongodb://localhost/"
 
 module.exports = defaultExport;
