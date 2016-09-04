@@ -17,8 +17,7 @@ export function postSteps(req, res, next) {
     .create({
       todaySteps: 1000
     })    
-    .then((steps, err) => {      
-      console.log(steps, "created")
+    .then((steps, err) => {            
       res.json(steps)
     })
     .catch(err => {
