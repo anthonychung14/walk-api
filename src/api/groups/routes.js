@@ -12,9 +12,7 @@ router.route('/data')
 router.route('/:groupCode')
       .get(
         controller.getGroup
-      , controller.noGroup)
-      .put(        
-        controller.joinGroup)      
+      , controller.noGroup)      
 
 //JOIN ROOM
 router.route('/')          
@@ -23,6 +21,8 @@ router.route('/')
       , controller.echoContract)
       .post(
         controller.createGroup)
+      .put(        
+        controller.joinGroup)      
       
 
 export default router;

@@ -61,10 +61,18 @@ export function noGroup(req,res,next, err) {
 
 //JOIN ROOM
 export function joinGroup(req, res, next) {          
-  const { groupCode } = req.params
-  Group
-    .findOne({ groupCode })
-    .exec()
+  if (req.body) {
+    const { groupCode, name } = req.body
+    console.log("req", req.body, groupCode, name)
+    Group
+    .findOneAndUpdate(
+      { groupCode }, 
+      { $push: { 
+          members: name
+        }
+      },
+      { new: true 
+    })    
     .then((group, err) => {
       if (!group) {
         next(err)
@@ -72,5 +80,6 @@ export function joinGroup(req, res, next) {
       req.group = group
       res.send(group)
     })      
+  }  
 }
 
