@@ -3,16 +3,31 @@ import * as controller from './controller'
 
 let router = new Router()
 
-router.param('code', controller.params)
-router.route('/')    
+//API CONTRACT
+router.route('/data')    
       .get(
-        controller.echo)
+        controller.echoContract)
+
+//JOIN ROOM
+router.route('/')          
+      .get(
+        controller.joinGroup
+      , controller.echoContract
+      )
       .post(
         controller.createGroup)
+//MAKE ROOM
+      
 
-router.route('/:code')
+//VIEW ROOM
+router.param('groupCode', controller.viewGroups)
+router.route('/:groupCode')
       .get(
         controller.getOne)
+
+
+
+
       // .put(
         //checkUser
       //, controller.put)
