@@ -2,7 +2,7 @@
 	"port": 8080,
 	"bodyLimit": "100kb",
 	"corsHeaders": ["Link"],
-  "dbHost": "mongodb://wokAdmin:wok@ds019856.mlab.com:19856/heroku_zblfkqfd",
+  "dbHostProd": "mongodb://wokAdmin:wok@ds019856.mlab.com:19856/heroku_zblfkqfd",
   "dbHostDev": "mongodb://localhost/walk"
 }
 

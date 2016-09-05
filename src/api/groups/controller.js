@@ -1,87 +1,76 @@
 import Group from './model'
 import _ from 'lodash'
+import { groupContract } from '../sampleData'
 
-export function params(req, res, next, code) {      
-  Group
-    .findOne({
-      groupId: code
-    })
-    .populate('code')
-    .exec()
-    .then((group, err) => {
-      if (!group) {
-        next(new Error("Code does not exist"))
-      }
-      req.group = group
-      console.log(group, "group")
-      next()
-    })    
+//API CONTRACT
+export function echoContract(req, res, next){    
+  console.log("<<<<< echo contract >>>>>>")  
+  res.json(groupContract)
 }
 
-export function echo(req, res, next){
-  res.json("Hello there")
-}
-
-export function getOne(req, res, next) {
-  console.log(req.params)
-  const group = req.group
-  res.json(group)
-}
-
-export function findGroup(req, res, next) {
-  console.log("i should not be firing")
-  const { code } = req.query.code
-
-  Group
-    .findOne({
-      "code": code
-    })
-    .populate('code', 'chain')
-    .exec()
-    .then((group, err) => {
-      if (!group) {
-        next(new Error("Code does not exist"))
-      }
-      req.group = group
-      next()
-    })    
-}
-
-
+//MAKE GROUP
 export function createGroup(req, res, next) {    
-  const { groupId } = req.body    
-  Group
-    .findOneAndUpdate({
-      "groupId": groupId,
-      "members": []
-    }, {
-      "upsert": true,
-      "new": true
-    })    
-    .then((group, err) => {                        
-      res.json(group);
+  const { groupCode } = req.body    
+  let newGroup = new Group({
+    "groupCode": groupCode
+  })  
+  newGroup
+    .save()
+    .then((group, err) => {      
+      console.log(group, "hooray")
+      res.sendStatus(201)
     })
     .catch(err => {
       console.log("error", err)
       res.sendStatus(400);
-    })    
+    })        
 }
-//on successful get with params
-export function joinGroup(req, res, next) {  
-  let { code } = req.body
+
+
+//VIEW GROUPS
+export function getAllGroups(req, res, next) {  
   Group
-    .findOne({
-      code
-    })
-    .then((group, err) => {
-      res.json(group)
-    })
-    .catch(err => {
-      console.log("error", err)
-      res.sendStatus(400)
-    })    
+    .find({})
+    .populate('_id', 'groupCode')
+    .exec()
+    .then((groups, err) => {
+      if (!groups) {
+        next(err)
+      }            
+      res.json(groups)      
+    })        
 }
 
-//on successful post with substr code
+export function getGroup(req, res, next) {  
+  const { groupCode } = req.params
+  Group
+    .findOne({ groupCode })
+    .exec()
+    .then((group, err) => {
+      if (!group) {
+        next(err)
+      }      
+      req.group = group
+      res.send(group)      
+    })      
+}
 
+export function noGroup(req,res,next, err) {
+  res.sendStatus(404)
+}
+
+//JOIN ROOM
+export function joinGroup(req, res, next) {          
+  const { groupCode } = req.params
+  Group
+    .findOne({ groupCode })
+    .exec()
+    .then((group, err) => {
+      if (!group) {
+        next(err)
+      }      
+      req.group = group
+      res.send(group)
+    })      
+}
 
