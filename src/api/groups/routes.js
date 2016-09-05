@@ -8,31 +8,20 @@ router.route('/data')
       .get(
         controller.echoContract)
 
+//VIEW ROOM
+router.route('/:groupCode')
+      .get(
+        controller.getGroup)
+      .put(        
+        controller.joinGroup)      
+
 //JOIN ROOM
 router.route('/')          
       .get(
-        controller.joinGroup
-      , controller.echoContract
-      )
+        controller.getAllGroups
+      , controller.echoContract)
       .post(
         controller.createGroup)
-//MAKE ROOM
       
 
-//VIEW ROOM
-router.param('groupCode', controller.viewGroups)
-router.route('/:groupCode')
-      .get(
-        controller.getOne)
-
-
-
-
-      // .put(
-        //checkUser
-      //, controller.put)
-      // .delete(
-        //checkUser
-      //, controller.delete)
-      
 export default router;

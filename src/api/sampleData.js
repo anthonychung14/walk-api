@@ -2,7 +2,7 @@ import Group from './groups/model'
 
 export const groupContract = 
 {
-  "instructions": "API",
+  "instructions": "API. You either got here through root or w/o req.query.groupId",
   "api/groups/?groupId=id": {
     "type": "GET",
     "responseCode": "200",

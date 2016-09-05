@@ -3,43 +3,54 @@ import _ from 'lodash'
 import { groupContract } from '../sampleData'
 
 //API CONTRACT
-export function echoContract(req, res, next){  
-  console.log("<<<<< echo contract >>>>>>")
+export function echoContract(req, res, next){    
+  console.log("<<<<< echo contract >>>>>>")  
   res.json(groupContract)
 }
 
-//VIEW ROOM
-export function viewGroups(req, res, next, code) {  
+//VIEW GROUPS
+export function getAllGroups(req, res, next) {  
   Group
-    .findOne({ groupCode: code })
+    .find({})
+    .populate('_id', 'groupCode')
     .exec()
-    .then((group, err) => {
-      if (!group) {
-        next(new Error("Code does not exist"))
-      }      
-      req.group = group
-      next()
-    })      
+    .then((groups, err) => {
+      if (!groups) {
+        next(err)
+      }            
+      res.json(groups)      
+    })        
 }
 
-export function getOne(req, res, next) {  
-  const group = req.group  
-  res.json(group)
-}
-
-//JOIN ROOM
-export function joinGroup(req, res, next) {          
-  const { groupCode } = req.query  
+export function getGroup(req, res, next) {  
+  const { groupCode } = req.params
   Group
     .findOne({ groupCode })
     .exec()
     .then((group, err) => {
       if (!group) {
-        next(new Error("Code does not exist"))
+        next(err)
       }      
       req.group = group
+      res.send(group)
       next()
-    })  
+    })      
+}
+
+//JOIN ROOM
+export function joinGroup(req, res, next) {          
+  console.log("I AM join group")
+  const { groupCode } = req.params
+  Group
+    .findOne({ groupCode })
+    .exec()
+    .then((group, err) => {
+      if (!group) {
+        next(err)
+      }      
+      req.group = group
+      res.send(group)
+    })      
 }
 
 //MAKE GROUP
