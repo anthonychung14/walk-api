@@ -3,19 +3,12 @@ import Group from './groups/model'
 export const groupContract = 
 {
   "instructions": "API. You either got here through root or w/o req.query.groupId",
-  "api/groups/?groupId=id": {
+  "api/groups/": {
     "type": "GET",
     "responseCode": "200",
-    "purpose": "Join groupRoom",
-    "schema": {      
-      "groupId": "1028dbE",
-      "members": "[Charlie, Justin]",
-      "chain": "4",
-      "stepsInChain": "24000",
-      "lastActivity": "5 Sept 2016"
-    },
+    "purpose": "view groupRooms",    
     "body": {
-      "data": "groupData"
+      "data": "['Groups']"
     }
   },
   "api/groups/:id": {
@@ -24,12 +17,26 @@ export const groupContract =
     "purpose": "View groupRoom",
     "schema": {      
       "groupId": "1028dbE",
-      "members": "[Charlie, Justin]",
+      "members": "[Fuzzykins]",
       "chain": "4",
       "lastActivity": "5 Sept 2016"
     },
     "body": {
-      "data": "groupData"
+      "data": "Group"
+    }
+  },
+  "api/groups/:id": {
+    "type": "PUT",
+    "responseCode": "201",
+    "purpose": "Join groupRoom",
+    "schema": {      
+      "groupId": "1028dbE",
+      "members": "[Fuzzykins, Charlie]",
+      "chain": "4",
+      "lastActivity": "5 Sept 2016"
+    },
+    "body": {
+      "data": "Group"
     }
   },
   "api/groups": {
