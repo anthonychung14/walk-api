@@ -51,9 +51,12 @@ export function getGroup(req, res, next) {
         next(err)
       }      
       req.group = group
-      res.send(group)
-      next()
+      res.send(group)      
     })      
+}
+
+export function noGroup(req,res,next, err) {
+  res.sendStatus(404)
 }
 
 //JOIN ROOM

@@ -11,7 +11,8 @@ router.route('/data')
 //VIEW ROOM
 router.route('/:groupCode')
       .get(
-        controller.getGroup)
+        controller.getGroup
+      , controller.noGroup)
       .put(        
         controller.joinGroup)      
 
